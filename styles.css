@@ -102,6 +102,61 @@ h2 {
     margin-bottom: 40px;
     color: #4CAF50;
 }
+/* 3D Box Styles */
+.box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    margin-top: 50px;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(15deg) rotateY(15deg);
+    transition: transform 0.5s ease;
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #4CAF50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.front {
+    transform: translateZ(100px);
+}
+
+.back {
+    transform: rotateY(180deg) translateZ(100px);
+}
+
+.right {
+    transform: rotateY(90deg) translateZ(100px);
+}
+
+.left {
+    transform: rotateY(-90deg) translateZ(100px);
+}
+
+.top {
+    transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom {
+    transform: rotateX(-90deg) translateZ(100px);
+}
 
 .about-content {
     max-width: 800px;
@@ -114,16 +169,121 @@ h2 {
     animation: fadeUp 1s ease forwards;
 }
 
-.education-card {
+/* Timeline Education Section Styles */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: #4CAF50;
+    transform: translateX(-50%);
+    animation: drawLine 2s ease-in-out forwards;
+}
+
+@keyframes drawLine {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
+    }
+}
+
+.timeline-card {
+    position: relative;
+    width: 45%;
+    margin-bottom: 40px;
+    padding: 20px;
     background: rgba(0, 0, 0, 0.7);
-    padding: 30px;
     border-radius: 10px;
-    margin: 20px;
-    max-width: 600px;
-    text-align: center;
-    transform: translateY(20px);
     opacity: 0;
     animation: fadeUp 1s ease forwards;
+}
+
+.timeline-card:nth-child(odd) {
+    margin-left: 55%;
+    text-align: left;
+}
+
+.timeline-card:nth-child(even) {
+    margin-right: 55%;
+    text-align: right;
+}
+
+.timeline-icon {
+    position: absolute;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    background: #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.timeline-card:nth-child(odd) .timeline-icon {
+    left: -75px;
+}
+
+.timeline-card:nth-child(even) .timeline-icon {
+    right: -75px;
+}
+
+.timeline-content {
+    padding: 20px;
+}
+
+.timeline-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.education-details {
+    margin-top: 10px;
+}
+
+.education-details p {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-card {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: left !important;
+    }
+
+    .timeline-card:nth-child(odd) .timeline-icon,
+    .timeline-card:nth-child(even) .timeline-icon {
+        left: -25px;
+        right: auto;
+    }
 }
 
 .cert-container {
